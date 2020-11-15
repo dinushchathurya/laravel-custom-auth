@@ -14,7 +14,9 @@ Route::post('/register','RegistrationController@register');
 
 /* Protected Routes - allows only logged in users */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/','DashboardController@index');
-    Route::post('/logout','LoginController@logout');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+
+    Route::post('/logout', 'LoginController@logout');
+    Route::post('/user', 'DashboardController@create');
 });
