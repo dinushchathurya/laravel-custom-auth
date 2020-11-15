@@ -12,16 +12,10 @@ class RegistrationController extends Controller
         return view('register');
     }
 
-    public function register(Request $request)
+    public function register(RegistrationRequest $requestFields)
     {
-        $validator = $request->validate([
-          'name'      => 'required|min:1',
-          'email'     => 'required',
-          'password'  => 'required|min:6'
-        ]);
-
-        \App\User::create($validator);
+        \App\User::create($requestFields);  
 
         return redirect('/login');
-     }
+    }
 }
