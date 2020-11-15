@@ -1,6 +1,6 @@
 # Laravel Custom Authentication
 
-Simple Cutom Authentication Application in Laravel.
+Custom Authentication Application in Laravel.
 
 ## Setup
 
