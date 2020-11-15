@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
@@ -13,17 +14,15 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(LoginRequest $requestFields)
     {
-        $validator = $request->validate([
-            'email'     => 'required',
-            'password'  => 'required|min:6'
-        ]);
+        $attributes = $requestFields->only(['email', 'password']);
 
-        if (Auth::attempt($validator)) {
+        if (Auth::attempt($attributes)) {
             return redirect()->route('dashboard');
         }
     }
+
 
     public function logout()
     {
